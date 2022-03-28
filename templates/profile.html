@@ -8,6 +8,10 @@
     <p>Your account details are below:</p>
     <table>
         <tr>
+            <td>id:</td>
+            <td>{{ account['id'] }}</td>
+        </tr>
+        <tr>
             <td>Username:</td>
             <td>{{ account['username'] }}</td>
         </tr>
@@ -22,21 +26,24 @@
     </table>
 </div>
 <div>
-    {% if filename %}
-    <div>
-        <img src="{{ url_for('display_image', filename=filename) }}">
-    </div>
-{% endif %}
-<form method="post" action="/" enctype="multipart/form-data">
-    <dl>
-        <p>
-            <input type="file" name="file" class="form-control" autocomplete="off" required>
-        </p>
-    </dl>
-    <p>
-        <input type="submit" value="Submit" class="btn btn-info">
-    </p>
-</form>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css">
+    <h1>File Upload</h1>
+    <form action="{{ url_for('upload_files', iduser= account['id']) }}" class="dropzone" method="POST">
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>
+
 </div>
+
+
+<!--
+    {% for filename in filenames %}
+        <div style="padding:20px;float:left;">
+            <img width="500" src="{{ url_for('display_image', filename=filename) }}"/>
+        </div>
+    {% endfor %} -->
+    <!--
+    <img src = "{{url_for ('static', filename = '/uploads//Captura_de_pantalla_de_2022-01-25_18-37-05.png')}}" width = "400" height = "400" alt = "su imagen fue secuestrada por un alienígena ～～" />
+    -->
 
 {% endblock %}

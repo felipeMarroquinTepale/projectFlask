@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+<h2>Página de Galeria de perfil</h2>
+
+<div>
+    <h2>Zona de imagenes :)</h2>
+    <div>
+        <!--
+        {% if filenames %}
+        {% for filename in filenames %}
+            <div>
+                <img src="{{ url_for('display_image', filename=filename) }}">
+            </div>
+        {% endfor %}
+        {% endif %}
+        -->
+        <form action="{{ url_for('gallery') }}" method="post" class="images" >
+            <input type="submit" value="Ver imagenes">
+
+        </form>
+    </div>
+</div>
+
+
+{% for filename in filenames %}
+        <div style="padding:50px;float:left;">
+            <div>
+                <img width="400" src="{{ url_for('display_image', filename=filename) }}">
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+
